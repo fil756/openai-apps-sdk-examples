@@ -1,0 +1,15 @@
+[phases.setup]
+nixPkgs = ["nodejs_20", "python310", "pnpm"]
+
+[phases.install]
+cmds = [
+  "pnpm install",
+  "python -m venv .venv",
+  "source .venv/bin/activate && pip install -r pizzaz_server_python/requirements.txt"
+]
+
+[phases.build]
+cmds = ["BASE_URL=$RAILWAY_PUBLIC_DOMAIN pnpm run build"]
+
+[start]
+cmd = "pnpm run serve & source .venv/bin/activate && uvicorn pizzaz_server_python.main:app --host 0.0.0.0 --port $PORT"
