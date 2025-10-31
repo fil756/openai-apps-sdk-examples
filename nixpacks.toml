@@ -9,7 +9,7 @@ cmds = [
 ]
 
 [phases.build]
-cmds = ["BASE_URL=$RAILWAY_PUBLIC_DOMAIN pnpm run build"]
+cmds = ["BASE_URL=https://openai-apps-sdk-examples-production-5f32.up.railway.app pnpm run build"]
 
 [start]
-cmd = "pnpm run serve & source .venv/bin/activate && uvicorn pizzaz_server_python.main:app --host 0.0.0.0 --port $PORT"
+cmd = "pnpm run serve & .venv/bin/uvicorn pizzaz_server_python.main:app --host 0.0.0.0 --port $PORT"
