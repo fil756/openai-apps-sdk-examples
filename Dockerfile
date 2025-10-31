@@ -23,6 +23,7 @@ RUN pnpm install --frozen-lockfile
 
 # Install Python dependencies
 RUN python3 -m venv /opt/venv && \
+    /opt/venv/bin/pip install --upgrade pip && \
     /opt/venv/bin/pip install --no-cache-dir -r pizzaz_server_python/requirements.txt
 
 # Copy application code
