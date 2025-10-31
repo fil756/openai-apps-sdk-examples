@@ -1,5 +1,5 @@
-# Use Node.js base image with Python
-FROM node:20-bullseye
+# Use Node.js base image with newer Debian (bookworm has Python 3.11)
+FROM node:20-bookworm
 
 # Install Python and dependencies
 RUN apt-get update && apt-get install -y \
