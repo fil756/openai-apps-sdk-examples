@@ -1,15 +1,14 @@
 [phases.setup]
-nixPkgs = ["nodejs_20", "python310", "pnpm"]
+nixPkgs = ["nodejs_20", "python310", "pnpm", "python310Packages.pip"]
 
 [phases.install]
 cmds = [
   "pnpm install",
-  "python -m venv .venv",
-  "source .venv/bin/activate && pip install -r pizzaz_server_python/requirements.txt"
+  "pip install --user -r pizzaz_server_python/requirements.txt"
 ]
 
 [phases.build]
 cmds = ["BASE_URL=https://openai-apps-sdk-examples-production-5f32.up.railway.app pnpm run build"]
 
 [start]
-cmd = "pnpm run serve & .venv/bin/uvicorn pizzaz_server_python.main:app --host 0.0.0.0 --port $PORT"
+cmd = "pnpm run serve & python -m uvicorn pizzaz_server_python.main:app --host 0.0.0.0 --port $PORT"
