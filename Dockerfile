@@ -37,5 +37,5 @@ RUN pnpm run build
 # Expose port
 EXPOSE 8000
 
-# Start command - run both servers
-CMD pnpm run serve & /opt/venv/bin/uvicorn pizzaz_server_python.main:app --host 0.0.0.0 --port $PORT
+# Start command - MCP server will also serve static assets
+CMD /opt/venv/bin/uvicorn pizzaz_server_python.main:app --host 0.0.0.0 --port $PORT

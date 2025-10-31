@@ -305,6 +305,12 @@ try:
 except Exception:
     pass
 
+# Mount static files for widget assets (must be after MCP routes are registered)
+from starlette.staticfiles import StaticFiles
+from starlette.routing import Mount
+assets_path = Path(__file__).resolve().parent.parent / "assets"
+app.routes.append(Mount("/", StaticFiles(directory=str(assets_path)), name="static"))
+
 
 if __name__ == "__main__":
     import uvicorn
